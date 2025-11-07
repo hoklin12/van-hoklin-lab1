@@ -1,0 +1,21 @@
+{
+  "name": "van-hoklin-lab1",
+  "packageManager": "yarn@4.6.0",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "chai": "^6.2.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "globals": "^16.5.0",
+    "mocha": "^11.7.5",
+    "supertest": "^7.1.4"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha --exit",
+    "lint": "eslint . --ext .js"
+  }
+}
