@@ -16,6 +16,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha --exit",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "coverage": "nyc --reporter=html --reporter=text-summary mocha --exit"
   }
 }
