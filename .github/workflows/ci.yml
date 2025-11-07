@@ -31,14 +31,14 @@ jobs:
           cache: 'yarn'
 
       # Use pinned Yarn 4 from repo (.yarn/releases/yarn-4.6.0.cjs)
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install dependencies with pinned Yarn
+        run: ./.yarn/releases/yarn-4.6.0.cjs install --frozen-lockfile
 
       - name: Lint code
-        run: yarn lint
+        run: ./.yarn/releases/yarn-4.6.0.cjs lint
 
       - name: Run tests
-        run: yarn test
+        run: ./.yarn/releases/yarn-4.6.0.cjs test
 
       # ------------------- Code Coverage --------------------
       - name: Generate coverage report
