@@ -1,4 +1,4 @@
-name: Node.js CI (Yarn)
+name: Node.js CI (Yarn 4)
 
 # ──────────────────────────────────────────────────────────────
 # Triggers
@@ -23,18 +23,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Setup Node 20
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'yarn'
 
-      # Enable Corepack & Yarn 4.6.0
-      - name: Enable Corepack & Yarn 4.6.0
-        run: |
-          corepack enable
-          corepack prepare yarn@4.6.0 --activate
-
+      # Use pinned Yarn 4 from repo (.yarn/releases/yarn-4.6.0.cjs)
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
@@ -47,7 +43,12 @@ jobs:
       # ------------------- Code Coverage --------------------
       - name: Generate coverage report
         if: success() && hashFiles('coverage/**/*') != ''
-        run: yarn coverage || echo "Coverage script not defined"
+        run: |
+          if yarn run coverage --help; then
+            yarn coverage
+          else
+            echo "No coverage script defined, skipping..."
+          fi
 
       - name: Upload coverage artifact
         if: success() && hashFiles('coverage/**/*') != ''
@@ -74,11 +75,7 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
-      - name: Enable Corepack & Yarn 4.6.0
-        run: |
-          corepack enable
-          corepack prepare yarn@4.6.0 --activate
-
+      # Use pinned Yarn 4
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
