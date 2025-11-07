@@ -1,6 +1,6 @@
 {
   "name": "van-hoklin-lab1",
-"packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@4.6.0",
   "dependencies": {
     "express": "^5.1.0"
   },
